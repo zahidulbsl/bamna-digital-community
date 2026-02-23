@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>বামনা - স্মার্ট উপজেলা সেবা অ্যাপ</title>
+  <meta name="description" content="বামনা উপজেলার সকল নাগরিক সেবা, জরুরি সহায়তা, গুরুত্বপূর্ণ নোটিশ এবং কমিউনিটি আপডেট এখন একটি অ্যাপেই।" />
+
+  <!-- Google Font: Hind Siliguri -->
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Font: Hind Siliguri -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Hind Siliguri', sans-serif; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 4px; }
+
+    .hero-bg {
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    /* Hero Phone Frame */
+    .phone-frame {
+      border: 10px solid #1f2937;
+      border-radius: 45px;
+      overflow: hidden;
+      position: relative;
+      background: #fff;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 25px;
+      background: #1f2937;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      z-index: 20;
+    }
+
+    /* Hero Slider Animation Classes */
+    .app-screen {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .app-screen.active {
+      opacity: 1;
+      z-index: 10;
+      pointer-events: auto;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #16a34a 0%, #0d9488 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Animation Keyframes for Laptop Blob */
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+    .animate-blob { animation: blob 7s infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+  </style>
+</head>
+
+<body class="text-gray-800 antialiased overflow-x-hidden">
+
+  <!-- Navbar -->
+  <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-3 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center text-white shadow-lg">
+          <i class="fa-solid fa-map-location-dot text-xl"></i>
+        </div>
+        <span class="text-xl font-bold text-gray-800">বামনা</span>
+      </div>
+
+      <div class="hidden md:flex gap-6 text-sm font-semibold text-gray-600">
+        <a href="#features" class="hover:text-green-600 transition">ফিচার</a>
+        <a href="#about" class="hover:text-green-600 transition">আমাদের সম্পর্কে</a>
+        <a href="#faq" class="hover:text-green-600 transition">প্রশ্ন ও উত্তর</a>
+      </div>
+
+      <a href="#download"
+         class="bg-green-600 text-white px-6 py-2 rounded-full font-bold shadow hover:bg-green-700 transition transform active:scale-95 text-sm flex items-center gap-2">
+        <i class="fa-solid fa-download"></i> অ্যাপ ডাউনলোড
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section (Slider Phone) -->
+  <section class="relative pt-32 pb-20 lg:pt-44 lg:pb-32 hero-bg overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Text Content -->
+        <div data-aos="fade-right">
+          <div class="inline-flex items-center gap-2 bg-green-50 border border-green-100 px-4 py-1.5 rounded-full text-green-700 text-xs font-bold mb-6 animate-pulse">
+            <span class="w-2 h-2 rounded-full bg-green-500"></span> লাইভ আপডেট ৩.২.০
+          </div>
+
+          <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight mb-6 text-gray-900">
+            আপনার উপজেলার <br>
+            <span class="gradient-text">ডিজিটাল সেবা ও তথ্যকেন্দ্র</span>
+          </h1>
+
+          <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            বামনা উপজেলার নাগরিকদের জন্য একটি আধুনিক ও সমন্বিত ডিজিটাল প্ল্যাটফর্ম। সরকারি সেবা, স্থানীয় সংবাদ,
+            গুরুত্বপূর্ণ নোটিশ এবং কমিউনিটি আপডেট—সবকিছু এখন একত্রে, দ্রুত ও নির্ভরযোগ্যভাবে।
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <a href="#download"
+               class="bg-gray-900 text-white px-8 py-4 rounded-xl font-bold shadow-xl hover:bg-gray-800 transition transform hover:-translate-y-1 flex items-center justify-center gap-3">
+              <i class="fa-brands fa-google-play text-2xl text-green-400"></i>
+              <div class="text-left">
+                <span class="block text-xs font-normal opacity-80">Download APK</span>
+                <span class="leading-none text-lg">Android</span>
+              </div>
+            </a>
+
+            <div class="flex items-center gap-4 px-4">
+              <div class="text-center">
+                <span class="block font-bold text-2xl text-gray-800">২K+</span>
+                <span class="text-xs text-gray-500">ডাউনলোড</span>
+              </div>
+              <div class="w-px h-8 bg-gray-300"></div>
+              <div class="text-center">
+                <span class="block font-bold text-2xl text-gray-800">৪.৯</span>
+                <span class="text-xs text-gray-500">রেটিং</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Mockup Slider -->
+        <div class="relative flex justify-center lg:justify-end" data-aos="fade-left">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-green-400/20 rounded-full blur-3xl animate-pulse"></div>
+
+          <div class="phone-frame w-[300px] h-[600px] z-20 bg-gray-50">
+            <div class="notch"></div>
+
+            <!-- Screen 1: Home Feed -->
+            <div class="app-screen active bg-gray-100 flex flex-col" id="screen-1">
+              <div class="bg-white p-4 pt-10 border-b flex justify-between items-center shadow-sm">
+                <div class="font-bold text-green-600 text-lg">বামনা</div>
+                <div class="flex gap-3 text-gray-500">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <i class="fa-regular fa-bell"></i>
+                </div>
+              </div>
+
+              <div class="p-3 space-y-3 overflow-hidden">
+                <div class="bg-white p-3 rounded-xl shadow-sm">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">A</div>
+                    <div>
+                      <div class="h-3 w-20 bg-gray-200 rounded mb-1"></div>
+                      <div class="h-2 w-12 bg-gray-100 rounded"></div>
+                    </div>
+                  </div>
+                  <div class="h-24 bg-gray-200 rounded-lg mb-2 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-gray-200 to-gray-300 animate-pulse"></div>
+                  </div>
+                  <div class="flex justify-between text-gray-400 text-sm px-2">
+                    <i class="fa-regular fa-thumbs-up"></i>
+                    <i class="fa-regular fa-comment"></i>
+                    <i class="fa-solid fa-share"></i>
+                  </div>
+                </div>
+
+                <div class="bg-white p-3 rounded-xl shadow-sm">
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold">S</div>
+                    <div class="h-3 w-24 bg-gray-200 rounded"></div>
+                  </div>
+                  <div class="h-16 bg-gray-100 rounded mb-2"></div>
+                </div>
+              </div>
+
+              <div class="mt-auto bg-white p-3 border-t flex justify-around text-xl text-gray-400">
+                <i class="fa-solid fa-house text-green-600"></i>
+                <i class="fa-solid fa-layer-group"></i>
+                <i class="fa-solid fa-user"></i>
+              </div>
+            </div>
+
+            <!-- Screen 2: Services Grid (NO MARKETPLACE) -->
+            <div class="app-screen bg-gray-50 flex flex-col" id="screen-2">
+              <div class="bg-white p-4 pt-10 border-b shadow-sm">
+                <h3 class="font-bold text-gray-800">সকল সেবা</h3>
+              </div>
+
+              <div class="p-4 grid grid-cols-3 gap-3">
+                <div class="bg-white p-3 rounded-xl shadow-sm flex flex-col items-center justify-center gap-2 aspect-square">
+                  <i class="fa-solid fa-droplet text-red-500 text-2xl"></i>
+                  <span class="text-[10px] font-bold">রক্তদান</span>
+                </div>
+
+                <div class="bg-white p-3 rounded-xl shadow-sm flex flex-col items-center justify-center gap-2 aspect-square">
+                  <i class="fa-solid fa-user-doctor text-blue-500 text-2xl"></i>
+                  <span class="text-[10px] font-bold">ডাক্তার</span>
+                </div>
+
+                <div class="bg-white p-3 rounded-xl shadow-sm flex flex-col items-center justify-center gap-2 aspect-square">
+                  <i class="fa-solid fa-fire-extinguisher text-red-600 text-2xl"></i>
+                  <span class="text-[10px] font-bold">ফায়ার</span>
+                </div>
+
+                <div class="bg-white p-3 rounded-xl shadow-sm flex flex-col items-center justify-center gap-2 aspect-square">
+                  <i class="fa-solid fa-landmark text-purple-600 text-2xl"></i>
+                  <span class="text-[10px] font-bold">পর্যটন</span>
+                </div>
+
+                <div class="bg-white p-3 rounded-xl shadow-sm flex flex-col items-center justify-center gap-2 aspect-square">
+                  <i class="fa-solid fa-bus text-teal-600 text-2xl"></i>
+                  <span class="text-[10px] font-bold">গাড়ি</span>
+                </div>
+
+                <div class="bg-white p-3 rounded-xl shadow-sm flex flex-col items-center justify-center gap-2 aspect-square">
+                  <i class="fa-solid fa-newspaper text-orange-500 text-2xl"></i>
+                  <span class="text-[10px] font-bold">নোটিশ</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Screen 3: Profile -->
+            <div class="app-screen bg-white flex flex-col" id="screen-3">
+              <div class="bg-green-600 h-40 rounded-b-3xl relative mb-12">
+                <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-24 h-24 bg-white rounded-full p-1 shadow-lg">
+                  <div class="w-full h-full bg-gray-200 rounded-full flex items-center justify-center text-3xl text-gray-400">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center px-4">
+                <h3 class="font-bold text-xl text-gray-800">
+                  আব্দুর রহিম <i class="fa-solid fa-circle-check text-blue-500 text-sm"></i>
+                </h3>
+                <p class="text-sm text-gray-500">বামনা সদর, বরগুনা</p>
+
+                <div class="flex justify-center gap-4 mt-4 mb-6">
+                  <div class="bg-gray-50 px-4 py-2 rounded-lg">
+                    <span class="block font-bold">১২০</span>
+                    <span class="text-xs text-gray-500">পোস্ট</span>
+                  </div>
+                  <div class="bg-gray-50 px-4 py-2 rounded-lg">
+                    <span class="block font-bold">৪৫০</span>
+                    <span class="text-xs text-gray-500">বন্ধু</span>
+                  </div>
+                </div>
+
+                <button class="w-full bg-green-600 text-white py-2 rounded-lg font-bold mb-2">এডিট প্রোফাইল</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Floating Badge -->
+          <div class="absolute bottom-20 -left-6 bg-white p-3 rounded-xl shadow-xl animate-bounce border border-gray-100 hidden sm:block">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div>
+                <p class="text-xs font-bold text-gray-800">Verified</p>
+                <p class="text-[10px] text-gray-500">Secure App</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="bg-white border-b border-gray-100 py-10">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-100">
+      <div data-aos="fade-up" data-aos-delay="0">
+        <p class="text-3xl font-bold text-green-600">৪</p>
+        <p class="text-sm text-gray-500 font-medium">ইউনিয়ন সেবা</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <p class="text-3xl font-bold text-orange-600">২৪/৭</p>
+        <p class="text-sm text-gray-500 font-medium">ইমার্জেন্সি সাপোর্ট</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <p class="text-3xl font-bold text-blue-600">১০০%</p>
+        <p class="text-sm text-gray-500 font-medium">ফ্রি ব্যবহার</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="300">
+        <p class="text-3xl font-bold text-purple-600">৫০০+</p>
+        <p class="text-sm text-gray-500 font-medium">রক্তদান রেটিং</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section (Laptop View) -->
+  <section id="about" class="py-20 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center gap-16">
+
+        <!-- Laptop Mockup (Left Side) -->
+        <div class="md:w-1/2 w-full relative" data-aos="fade-right">
+          <div class="absolute -top-10 -left-10 w-40 h-40 bg-green-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob"></div>
+          <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-200 rounded-full mix-blend-multiply filter blur-2xl opacity-70 animate-blob animation-delay-2000"></div>
+
+          <div class="relative mx-auto border-gray-800 bg-gray-800 border-[8px] rounded-t-xl h-[200px] max-w-[350px] md:h-[280px] md:max-w-[500px]">
+            <div class="rounded-lg overflow-hidden h-full bg-gray-50 flex flex-col">
+
+              <div class="bg-white border-b p-3 flex justify-between items-center px-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 bg-green-600 rounded flex items-center justify-center text-white text-xs">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                  </div>
+                  <span class="font-bold text-gray-700 text-xs md:text-sm">বামনা ওয়েব পোর্টাল</span>
+                </div>
+                <div class="flex gap-2">
+                  <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                  <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                </div>
+              </div>
+
+              <div class="flex flex-1 overflow-hidden">
+                <div class="w-1/4 bg-gray-100 border-r p-2 hidden sm:block">
+                  <div class="space-y-2">
+                    <div class="h-2 w-3/4 bg-gray-300 rounded"></div>
+                    <div class="h-2 w-1/2 bg-gray-300 rounded"></div>
+                    <div class="h-2 w-2/3 bg-gray-300 rounded"></div>
+                    <div class="mt-4 h-2 w-full bg-blue-200 rounded"></div>
+                  </div>
+                </div>
+
+                <div class="flex-1 p-3 space-y-3 bg-slate-50 relative">
+                  <div class="h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg flex items-center px-4 text-white">
+                    <div>
+                      <div class="h-2 w-24 bg-white/50 rounded mb-1"></div>
+                      <div class="h-3 w-32 bg-white rounded"></div>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-2">
+                    <div class="bg-white p-2 rounded shadow-sm border border-gray-100">
+                      <div class="text-xs text-gray-400">মোট ইউজার</div>
+                      <div class="font-bold text-green-600">৬,০০০+</div>
+                    </div>
+                    <div class="bg-white p-2 rounded shadow-sm border border-gray-100">
+                      <div class="text-xs text-gray-400">অ্যাপ ডাউনলোড</div>
+                      <div class="font-bold text-blue-600">৭০০+</div>
+                    </div>
+                  </div>
+
+                  <div class="bg-white rounded shadow-sm border border-gray-100 p-2 space-y-2">
+                    <div class="flex items-center gap-2">
+                      <div class="w-6 h-6 rounded-full bg-gray-200"></div>
+                      <div class="h-2 w-full bg-gray-100 rounded"></div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="w-6 h-6 rounded-full bg-gray-200"></div>
+                      <div class="h-2 w-3/4 bg-gray-100 rounded"></div>
+                    </div>
+                  </div>
+
+                  <i class="fa-solid fa-arrow-pointer absolute bottom-4 right-10 text-gray-800 text-xl animate-bounce"></i>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="relative mx-auto bg-gray-900 rounded-b-xl rounded-t-sm h-[17px] max-w-[400px] md:h-[22px] md:max-w-[600px] shadow-2xl">
+            <div class="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl w-[60px] h-[5px] md:w-[100px] md:h-[8px] bg-gray-800"></div>
+          </div>
+        </div>
+
+        <!-- Text Content (Right Side) -->
+        <div class="md:w-1/2" data-aos="fade-left">
+          <h2 class="text-sm font-bold text-green-600 uppercase tracking-wide mb-2">আমাদের লক্ষ্য</h2>
+          <h3 class="text-3xl font-bold text-gray-900 mb-6">বামনার জন্য একক ডিজিটাল সেবা কেন্দ্র</h3>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            আমরা বিশ্বাস করি বামনা উপজেলার নাগরিকদের জন্য প্রয়োজনীয় তথ্য, সেবা ও আপডেট—সবকিছু এক জায়গায়,
+            সহজ ও নির্ভরযোগ্যভাবে।
+          </p>
+
+          <!-- Your two highlight cards (icons fixed to work well with green theme) -->
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3 bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+              <i class="fa-solid fa-shield-halved text-emerald-700 text-xl"></i>
+              <div>
+                <h4 class="font-bold text-gray-800 text-sm">নির্ভরযোগ্য অবকাঠামো</h4>
+                <p class="text-xs text-gray-500">স্থিতিশীল ও সুরক্ষিত প্রযুক্তির মাধ্যমে নিরবচ্ছিন্ন সেবা নিশ্চিত করা হয়।</p>
+              </div>
+            </li>
+
+            <li class="flex items-center gap-3 bg-sky-50 p-3 rounded-lg border border-sky-100">
+              <i class="fa-solid fa-mobile-screen-button text-sky-700 text-xl"></i>
+              <div>
+                <h4 class="font-bold text-gray-800 text-sm">সহজ ও ব্যবহারবান্ধব</h4>
+                <p class="text-xs text-gray-500">সরল ও পরিষ্কার নকশা, যাতে সবাই সহজেই ব্যবহার করতে পারেন।</p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="#download"
+             class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl transition-all">
+            অ্যাপ ডাউনলোড করুন <i class="fa-solid fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- User Journey Animation Section -->
+  <section class="py-24 bg-gradient-to-b from-white to-green-50 overflow-hidden relative">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style="animation-delay: 2s"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col-reverse lg:flex-row items-center gap-16">
+
+        <!-- Text -->
+        <div class="lg:w-1/2" data-aos="fade-right">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-10 h-1 bg-green-600 rounded-full"></span>
+            <span class="text-green-600 font-bold uppercase tracking-wider text-sm">সহজ ব্যবহারবিধি</span>
+          </div>
+
+          <h2 class="text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
+            অ্যাকাউন্ট খুলুন মাত্র <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-500">১ মিনিটে</span>
+          </h2>
+
+          <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+            জটিল কোনো ফর্ম পূরণ করতে হবে না। শুধু অ্যাপটি ইনস্টল করুন, আপনার নাম ও মোবাইল নম্বর দিন—ব্যাস!
+            আপনি এখন স্মার্ট বামনার গর্বিত সদস্য।
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center group-hover:bg-green-600 transition duration-300">
+                <i class="fa-solid fa-download text-green-600 text-xl group-hover:text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 text-lg">ইনস্টল</h4>
+                <p class="text-sm text-gray-500">গুগল প্লে স্টোর বা ওয়েবসাইট থেকে ডাউনলোড করুন।</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center group-hover:bg-green-600 transition duration-300">
+                <i class="fa-solid fa-user-plus text-green-600 text-xl group-hover:text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 text-lg">রেজিস্ট্রেশন</h4>
+                <p class="text-sm text-gray-500">আপনার সঠিক তথ্য দিয়ে প্রোফাইল তৈরি করুন।</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 group">
+              <div class="w-12 h-12 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center group-hover:bg-green-600 transition duration-300">
+                <i class="fa-solid fa-rocket text-green-600 text-xl group-hover:text-white"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-gray-800 text-lg">সেবা নিন</h4>
+                <p class="text-sm text-gray-500">নোটিশ, জরুরি সেবা ও প্রয়োজনীয় তথ্য ব্যবহার করুন।</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated Phone -->
+        <div class="lg:w-1/2 flex justify-center relative" data-aos="fade-left">
+          <div class="relative w-[300px] h-[600px] bg-gray-900 rounded-[40px] border-[8px] border-gray-800 shadow-2xl overflow-hidden ring-4 ring-gray-100/50">
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-xl z-30"></div>
+
+            <!-- SCENE 1 -->
+            <div id="scene-install" class="absolute inset-0 bg-white z-20 flex flex-col items-center justify-center transition-opacity duration-500">
+              <div class="w-24 h-24 bg-green-100 rounded-2xl flex items-center justify-center mb-6 animate-bounce">
+                <i class="fa-solid fa-map-location-dot text-green-600 text-5xl"></i>
+              </div>
+              <h3 class="font-bold text-2xl text-gray-800 mb-2">বামনা</h3>
+              <p class="text-sm text-gray-500 mb-8">স্মার্ট সেবা</p>
+
+              <div class="w-48 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg relative overflow-hidden">
+                <span class="relative z-10" id="install-text">ইনস্টল করুন</span>
+                <div id="install-progress" class="absolute left-0 top-0 h-full bg-green-800 w-0 transition-all duration-[2000ms] ease-out"></div>
+              </div>
+              <p id="install-status" class="text-xs text-gray-400 mt-3 opacity-0">ডাউনলোড হচ্ছে...</p>
+            </div>
+
+            <!-- SCENE 2 -->
+            <div id="scene-register" class="absolute inset-0 bg-white z-10 opacity-0 flex flex-col p-6 pt-16 transition-opacity duration-500">
+              <h3 class="text-xl font-bold text-green-700 mb-1">স্বাগতম!</h3>
+              <p class="text-sm text-gray-500 mb-6">অ্যাকাউন্ট তৈরি করুন</p>
+
+              <div class="space-y-4">
+                <div>
+                  <label class="text-xs font-bold text-gray-500 ml-1">আপনার নাম</label>
+                  <div class="bg-gray-50 border rounded-lg p-3 h-10 flex items-center text-sm font-semibold text-gray-700" id="reg-name-input"></div>
+                </div>
+                <div>
+                  <label class="text-xs font-bold text-gray-500 ml-1">মোবাইল নম্বর</label>
+                  <div class="bg-gray-50 border rounded-lg p-3 h-10 flex items-center text-sm font-semibold text-gray-700" id="reg-phone-input"></div>
+                </div>
+                <div>
+                  <label class="text-xs font-bold text-gray-500 ml-1">ইউনিয়ন</label>
+                  <div class="bg-gray-50 border rounded-lg p-3 h-10 flex items-center text-sm text-gray-400">বামনা সদর</div>
+                </div>
+              </div>
+
+              <button id="reg-btn" class="mt-6 w-full bg-green-600 text-white py-3 rounded-xl font-bold shadow-md transform scale-100 transition-transform">
+                রেজিস্ট্রেশন করুন
+              </button>
+            </div>
+
+            <!-- SCENE 3 -->
+            <div id="scene-dashboard" class="absolute inset-0 bg-gray-50 z-0 opacity-0 flex flex-col pt-8 transition-opacity duration-500">
+              <div class="bg-white p-4 pb-2 border-b flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-green-500">
+                    <img src="https://i.pravatar.cc/100?img=12" class="w-full h-full object-cover" alt="avatar">
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-xs text-gray-800">রাকিব হাসান</h4>
+                    <p class="text-[10px] text-green-600">ভেরিফাইড নাগরিক</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-bell text-gray-400"></i>
+              </div>
+
+              <div class="p-3 space-y-3 overflow-hidden">
+                <div class="bg-gradient-to-r from-green-500 to-teal-500 p-4 rounded-xl text-white shadow-lg transform translate-y-4 transition duration-500" id="dash-banner">
+                  <h3 class="font-bold text-sm">জরুরি নোটিশ?</h3>
+                  <p class="text-xs opacity-90 mb-2">আপডেট দ্রুত পান</p>
+                  <button class="bg-white text-green-600 text-[10px] font-bold px-3 py-1 rounded-full">দেখুন</button>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                  <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center gap-2 transform translate-x-10 opacity-0 transition delay-100" id="dash-item-1">
+                    <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center"><i class="fa-solid fa-newspaper"></i></div>
+                    <span class="text-xs font-bold">নোটিশ</span>
+                  </div>
+
+                  <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center gap-2 transform translate-x-10 opacity-0 transition delay-200" id="dash-item-2">
+                    <div class="w-8 h-8 rounded-lg bg-red-100 text-red-600 flex items-center justify-center"><i class="fa-solid fa-fire-extinguisher"></i></div>
+                    <span class="text-xs font-bold">ইমার্জেন্সি</span>
+                  </div>
+
+                  <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center gap-2 transform translate-x-10 opacity-0 transition delay-300" id="dash-item-3">
+                    <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-user-doctor"></i></div>
+                    <span class="text-xs font-bold">ডাক্তার</span>
+                  </div>
+
+                  <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center gap-2 transform translate-x-10 opacity-0 transition delay-400" id="dash-item-4">
+                    <div class="w-8 h-8 rounded-lg bg-green-100 text-green-600 flex items-center justify-center"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                    <span class="text-xs font-bold">রক্তদান</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-auto bg-white p-3 border-t flex justify-around text-xl text-gray-300">
+                <i class="fa-solid fa-house text-green-600"></i>
+                <i class="fa-solid fa-comment-dots"></i>
+                <i class="fa-solid fa-bars"></i>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="absolute top-10 -right-6 bg-white p-2 rounded-lg shadow-lg animate-bounce hidden md:block">
+            <i class="fa-solid fa-check-circle text-green-500 text-2xl"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Features (NO MARKETPLACE FEATURE) -->
+  <section id="features" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">আমাদের অ্যাপের প্রিমিয়াম ফিচারসমূহ</h2>
+        <p class="text-gray-500">শুধু একটি অ্যাপ নয়—এটি বামনার নাগরিকদের দৈনন্দিন জীবনের ডিজিটাল সহায়তা।</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition group border border-gray-100" data-aos="fade-up">
+          <div class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-green-600 text-2xl mb-6 group-hover:bg-green-600 group-hover:text-white transition">
+            <i class="fa-solid fa-users-viewfinder"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">কমিউনিটি আপডেট</h4>
+          <p class="text-gray-500 text-sm leading-relaxed">এলাকার খবর, আপডেট ও গুরুত্বপূর্ণ তথ্য দ্রুত জানুন এবং কমিউনিটির সাথে সংযুক্ত থাকুন।</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition group border border-gray-100" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-red-600 text-2xl mb-6 group-hover:bg-red-600 group-hover:text-white transition">
+            <i class="fa-solid fa-hand-holding-droplet"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">লাইভ ব্লাড সাপোর্ট</h4>
+          <p class="text-gray-500 text-sm leading-relaxed">জরুরি প্রয়োজনে ডোনার খুঁজুন এবং দ্রুত যোগাযোগ করুন।</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition group border border-gray-100" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 text-2xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">ডিজিটাল ডিরেক্টরি</h4>
+          <p class="text-gray-500 text-sm leading-relaxed">ইউএনও, ওসি, হাসপাতাল, ফায়ার সার্ভিসসহ প্রয়োজনীয় নম্বর এক ক্লিকেই।</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition group border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 text-2xl mb-6 group-hover:bg-orange-600 group-hover:text-white transition">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">নোটিশ ও ঘোষণা</h4>
+          <p class="text-gray-500 text-sm leading-relaxed">সরকারি/স্থানীয় নোটিশ, জরুরি ঘোষণা, ইভেন্ট আপডেট—সব এক জায়গায়।</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition group border border-gray-100" data-aos="fade-up" data-aos-delay="400">
+          <div class="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center text-purple-600 text-2xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition">
+            <i class="fa-solid fa-comment-dots"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">গোপন অভিযোগ বক্স</h4>
+          <p class="text-gray-500 text-sm leading-relaxed">এলাকার সমস্যা বা অনিয়ম প্রশাসনকে জানান—পরিচয় গোপন রাখা যায়।</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition group border border-gray-100" data-aos="fade-up" data-aos-delay="500">
+          <div class="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 text-2xl mb-6 group-hover:bg-teal-600 group-hover:text-white transition">
+            <i class="fa-solid fa-id-card"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 mb-3">স্মার্ট ভেরিফিকেশন</h4>
+          <p class="text-gray-500 text-sm leading-relaxed">ভেরিফাইড প্রোফাইল সিস্টেম—কমিউনিটির বিশ্বাসযোগ্যতা বাড়ায়।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-10 text-gray-900">সচরাচর জিজ্ঞাসা (FAQ)</h2>
+
+      <div class="space-y-4">
+        <details class="group bg-gray-50 p-6 rounded-xl cursor-pointer" open>
+          <summary class="flex justify-between items-center font-bold text-lg text-gray-800 list-none">
+            এই অ্যাপটি ব্যবহার করতে কি টাকা লাগে?
+            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-gray-600 mt-4 leading-relaxed">না, "বামনা - স্মার্ট সেবা" অ্যাপটি ব্যবহার করা সম্পূর্ণ ফ্রি।</p>
+        </details>
+
+        <details class="group bg-gray-50 p-6 rounded-xl cursor-pointer">
+          <summary class="flex justify-between items-center font-bold text-lg text-gray-800 list-none">
+            আমার ব্যক্তিগত তথ্য কি নিরাপদ?
+            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-gray-600 mt-4 leading-relaxed">হ্যাঁ, আপনার গোপনীয়তাকে সর্বোচ্চ অগ্রাধিকার দেওয়া হয়।</p>
+        </details>
+
+        <details class="group bg-gray-50 p-6 rounded-xl cursor-pointer">
+          <summary class="flex justify-between items-center font-bold text-lg text-gray-800 list-none">
+            আমি কিভাবে রক্তদাতা হিসেবে যুক্ত হবো?
+            <span class="transition group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-gray-600 mt-4 leading-relaxed">অ্যাপে লগইন করার পর 'রক্তদান' মেনু থেকে ডোনার হিসেবে তথ্য যুক্ত করুন।</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download" class="py-24 bg-gradient-to-br from-green-600 to-teal-700 text-white text-center relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full opacity-10">
+      <i class="fa-solid fa-map-location-dot absolute top-10 left-10 text-9xl"></i>
+      <i class="fa-solid fa-mobile-screen absolute bottom-10 right-10 text-9xl"></i>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+      <h2 class="text-4xl lg:text-5xl font-extrabold mb-6">বামনার ডিজিটাল বিপ্লবে অংশ নিন</h2>
+      <p class="text-xl text-green-100 mb-10 max-w-2xl mx-auto">অ্যাপটি ডাউনলোড করুন এবং আপনার এলাকার তথ্য ও সেবা উপভোগ করুন।</p>
+
+      <div class="bg-white text-gray-800 p-8 rounded-3xl max-w-md mx-auto shadow-2xl">
+        <p class="text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest">Version 3.2.0 • Lightweight</p>
+
+        <!-- Replace this APK link with your real release URL -->
+        <a href="#"
+           class="bg-green-600 text-white w-full py-4 rounded-xl font-bold text-xl shadow-lg hover:bg-green-700 transition flex items-center justify-center gap-3 mb-4">
+          <i class="fa-solid fa-download"></i> এখনই ডাউনলোড করুন
+        </a>
+
+        <p class="text-xs text-gray-500 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-shield-halved text-green-600"></i> ১০০% নিরাপদ এবং ভাইরাস মুক্ত
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 mb-8">
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex items-center gap-2 mb-4 text-white">
+          <i class="fa-solid fa-map-location-dot text-2xl text-green-500"></i>
+          <span class="text-2xl font-bold">বামনা</span>
+        </div>
+        <p class="text-sm leading-relaxed max-w-xs">বামনা উপজেলার নাগরিকদের জীবনযাত্রার মান উন্নয়নে একটি ক্ষুদ্র প্রয়াস। প্রযুক্তি হোক সেবার মাধ্যম।</p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-4">গুরুত্বপূর্ণ লিংক</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-green-500 transition">গোপনীয়তা নীতি</a></li>
+          <li><a href="#" class="hover:text-green-500 transition">ব্যবহারের শর্তাবলী</a></li>
+          <li><a href="#" class="hover:text-green-500 transition">হেল্প সেন্টার</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-4">যোগাযোগ</h4>
+        <ul class="space-y-2 text-sm">
+          <li><i class="fa-solid fa-envelope mr-2"></i> help@bamna.app</li>
+          <li><i class="fa-brands fa-facebook mr-2"></i> ফেসবুক পেজ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="text-center text-xs border-t border-gray-800 pt-8">
+      &copy; ২০২৫ বামনা স্মার্ট সেবা। সর্বস্বত্ব সংরক্ষিত।
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 50 });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const screens = [
+        document.getElementById('screen-1'),
+        document.getElementById('screen-2'),
+        document.getElementById('screen-3')
+      ];
+      let currentScreen = 0;
+
+      setInterval(() => {
+        screens[currentScreen].classList.remove('active');
+        currentScreen = (currentScreen + 1) % screens.length;
+        screens[currentScreen].classList.add('active');
+      }, 3000);
+
+      runJourneyAnimation();
+    });
+
+    async function runJourneyAnimation() {
+      const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+      const sceneInstall = document.getElementById('scene-install');
+      const sceneRegister = document.getElementById('scene-register');
+      const sceneDashboard = document.getElementById('scene-dashboard');
+
+      const installProgress = document.getElementById('install-progress');
+      const installText = document.getElementById('install-text');
+      const installStatus = document.getElementById('install-status');
+
+      const nameInput = document.getElementById('reg-name-input');
+      const phoneInput = document.getElementById('reg-phone-input');
+      const regBtn = document.getElementById('reg-btn');
+
+      const dashBanner = document.getElementById('dash-banner');
+      const dashItems = [
+        document.getElementById('dash-item-1'),
+        document.getElementById('dash-item-2'),
+        document.getElementById('dash-item-3'),
+        document.getElementById('dash-item-4')
+      ];
+
+      while (true) {
+        // RESET
+        sceneInstall.style.opacity = '1'; sceneInstall.style.zIndex = '20';
+        sceneRegister.style.opacity = '0'; sceneRegister.style.zIndex = '10';
+        sceneDashboard.style.opacity = '0'; sceneDashboard.style.zIndex = '0';
+
+        installProgress.style.width = '0%';
+        installText.innerText = 'ইনস্টল করুন';
+        installStatus.style.opacity = '0';
+
+        nameInput.innerText = '';
+        phoneInput.innerText = '';
+        regBtn.classList.remove('scale-95', 'bg-green-700');
+
+        dashBanner.classList.remove('translate-y-0');
+        dashBanner.classList.add('translate-y-4');
+        dashItems.forEach(item => {
+          item.classList.remove('translate-x-0', 'opacity-100');
+          item.classList.add('translate-x-10', 'opacity-0');
+        });
+
+        await wait(1000);
+
+        // SCENE 1
+        installText.innerText = 'ডাউনলোড হচ্ছে...';
+        installStatus.style.opacity = '1';
+        installProgress.style.width = '100%';
+        await wait(2200);
+        installText.innerText = 'ওপেন করুন';
+        await wait(800);
+
+        // SCENE 2
+        sceneInstall.style.opacity = '0';
+        sceneRegister.style.opacity = '1';
+        sceneRegister.style.zIndex = '20';
+        await wait(1000);
+
+        const nameToType = "রাকিব হাসান";
+        for (let i = 0; i <= nameToType.length; i++) {
+          nameInput.innerText = nameToType.substring(0, i) + "|";
+          await wait(100);
+        }
+        nameInput.innerText = nameToType;
+
+        await wait(300);
+        const phoneToType = "017XXXXXXXX";
+        for (let i = 0; i <= phoneToType.length; i++) {
+          phoneInput.innerText = phoneToType.substring(0, i) + "|";
+          await wait(50);
+        }
+        phoneInput.innerText = phoneToType;
+
+        await wait(500);
+        regBtn.classList.add('scale-95', 'bg-green-700');
+        await wait(300);
+
+        // SCENE 3
+        sceneRegister.style.opacity = '0';
+        sceneDashboard.style.opacity = '1';
+        sceneDashboard.style.zIndex = '30';
+
+        await wait(300);
+        dashBanner.classList.remove('translate-y-4');
+
+        dashItems.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.remove('translate-x-10', 'opacity-0');
+            item.classList.add('translate-x-0', 'opacity-100');
+          }, index * 100);
+        });
+
+        await wait(4000);
+      }
+    }
+  </script>
+</body>
+</html>
